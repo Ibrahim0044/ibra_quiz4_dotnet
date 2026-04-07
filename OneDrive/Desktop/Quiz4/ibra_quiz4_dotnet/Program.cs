@@ -1,3 +1,5 @@
+// Initial version before database feature
+
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
