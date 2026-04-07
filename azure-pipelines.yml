@@ -6,6 +6,7 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
+  projectPath: 'OneDrive/Desktop/Quiz4/ibra_quiz4_dotnet/ibra_quiz4_dotnet.csproj'
 
 steps:
 - task: UseDotNet@2
@@ -13,13 +14,13 @@ steps:
     packageType: 'sdk'
     version: '8.x'
 
-- script: dotnet restore
+- script: dotnet restore "$(Build.SourcesDirectory)\$(projectPath)"
   displayName: 'Restore packages'
 
-- script: dotnet build --configuration $(buildConfiguration)
+- script: dotnet build "$(Build.SourcesDirectory)\$(projectPath)" --configuration $(buildConfiguration)
   displayName: 'Build project'
 
-- script: dotnet publish -c $(buildConfiguration) -o $(Build.ArtifactStagingDirectory)
+- script: dotnet publish "$(Build.SourcesDirectory)\$(projectPath)" -c $(buildConfiguration) -o "$(Build.ArtifactStagingDirectory)"
   displayName: 'Publish project'
 
 - task: PublishBuildArtifacts@1
